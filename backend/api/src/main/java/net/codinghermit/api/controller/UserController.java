@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -32,6 +32,7 @@ public class UserController {
     public User createUser(@RequestBody User user)  {
         if(userRepository.findById(user.getId())==null) {
             int id = userRepository.insert(user);
+            System.out.println(id);
             return userRepository.findById(user.getId());
         }else
         {
