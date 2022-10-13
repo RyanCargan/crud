@@ -2,6 +2,6 @@ package net.codinghermit.api.exception;
 
 public class UserIdAlreadyExistException extends RuntimeException{
     public UserIdAlreadyExistException() {
-        super("User Id Already Exist");
+        super("User Id Already Exists");
     }
 }
