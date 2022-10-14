@@ -52,17 +52,17 @@ public class CourseController {
         return ResponseEntity.ok(user);
     }
 
- // update user rest api
- @PutMapping("/courses/{id}")
- public ResponseEntity<User> updateUser(@PathVariable Long id,
-             @RequestBody User userDetails) {
-  if(userRepository.update(new User(id, userDetails.getFirstName(), 
-         userDetails.getLastName(), userDetails.getEmailId()))==0)
-            {
-                throw new UserIdNotFoundException();
-            }
+    // update user rest api
+    @PutMapping("/courses/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id,
+                @RequestBody User userDetails) {
+    if(userRepository.update(new User(id, userDetails.getFirstName(), 
+            userDetails.getLastName(), userDetails.getEmailId()))==0)
+                {
+                    throw new UserIdNotFoundException();
+                }
 
-       return ResponseEntity.ok(userRepository.findById(id));
+        return ResponseEntity.ok(userRepository.findById(id));
     }
 
     // delete user rest api
