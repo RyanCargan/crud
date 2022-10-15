@@ -13,15 +13,4 @@ public class Student {
     private String firstName;
     private String lastName;
     private String emailId;
-
-    // public Student() {}
-
-    // public Student(long id,String firstName, 
-    //           String lastName, String emailId) {
-    //     super();
-    //     this.id=id;
-    //     this.firstName = firstName;
-    //     this.lastName = lastName;
-    //     this.emailId = emailId;
-    // }
 }
