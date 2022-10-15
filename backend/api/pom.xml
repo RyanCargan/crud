@@ -19,6 +19,32 @@
 
 	<dependencies>
 
+		<!-- Jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>com.github.houbb</groupId>
+			<artifactId>redis-client-jedis</artifactId>
+			<version>0.0.3</version>
+		</dependency> -->
+
+		<!-- Redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>2.7.4</version>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>io.lettuce.lettuce-core</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			  </exclusions> -->
+		</dependency>
+
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
