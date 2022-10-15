@@ -1,4 +1,4 @@
-package net.codinghermit.api.repository;
+package net.codinghermit.api.repo;
 
 import org.apache.ibatis.annotations.*;
 
@@ -7,7 +7,7 @@ import net.codinghermit.api.model.User;
 import java.util.List;
 
 @Mapper
-public interface CourseRepository {
+public interface StudentRepository {
 
     @Select("select * from users")
     public List<User> findAll();

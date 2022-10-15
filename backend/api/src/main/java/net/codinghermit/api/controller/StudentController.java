@@ -5,7 +5,7 @@ import net.codinghermit.api.
 import net.codinghermit.api.
                            exception.UserIdNotFoundException;
 import net.codinghermit.api.model.User;
-import net.codinghermit.api.repository.UserRepository;
+import net.codinghermit.api.repo.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

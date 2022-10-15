@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.boot.autoconfigure.domain.EntityScan;
 // import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-// import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.annotation.EnableCaching;
 // import org.springframework.context.annotation.Bean;
 // import org.springframework.context.annotation.Configuration;
 // import org.springframework.context.annotation.ComponentScan;
@@ -16,10 +16,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 // @ComponentScan({ "net.codinghermit.api.*" })
+// @ComponentScan(basePackages = "net.codinghermit.api")
 // @EntityScan("net.codinghermit.api.*")
 // @Configuration
 // @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-// @EnableCaching
+@EnableCaching
 public class ApiApplication {
 
    public static void main(String[] args) {

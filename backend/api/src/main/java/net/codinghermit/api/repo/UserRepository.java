@@ -1,4 +1,4 @@
-package net.codinghermit.api.repository;
+package net.codinghermit.api.repo;
 
 import org.apache.ibatis.annotations.*;
 
