@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+// import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +25,12 @@ import net.codinghermit.api.
                            exception.UserIdNotFoundException;
 import net.codinghermit.api.model.User;
 import net.codinghermit.api.repo.UserRepository;
-import net.codinghermit.api.service.UserService;;
+// import net.codinghermit.api.service.UserService;;
 
 @RestController
-// @CachePut(value = "crud", key = "#user.id")
 @RequestMapping("/api/")
 public class UserController {
-    private UserService userService;
+    // private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -36,15 +38,25 @@ public class UserController {
     // get all users
     @GetMapping("/users")
     @Cacheable("users")
-    public List<User> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        if (users.isEmpty()) throw new UserIdNotFoundException();
-        else return users;
-    }
-    // public List<User> getAllUsers()
-    // {
-    //     return userRepository.findAll();
+    // @CachePut(cacheNames = {"users"})
+    // public List<User> getAllUsers() {
+    //     List<User> users = userService.getAllUsers();
+    //     if (users.isEmpty()) throw new UserIdNotFoundException();
+    //         else return users;
     // }
+    public List<User> getAllUsers()
+    {
+        return userRepository.findAll();
+    }
+
+
+    // empty cache
+    @GetMapping("/empty")
+    @CacheEvict(value = "users", allEntries = true)
+    // @Scheduled(fixedRateString = "${caching.userListTTL}")
+    public void emptyUsersCache() {
+        System.out.println("Emptying users cache!");
+    }
 
     // create user rest API
     @PostMapping("/users")
