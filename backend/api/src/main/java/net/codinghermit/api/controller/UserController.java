@@ -22,21 +22,29 @@ import net.codinghermit.api.
                            exception.UserIdNotFoundException;
 import net.codinghermit.api.model.User;
 import net.codinghermit.api.repo.UserRepository;
+import net.codinghermit.api.service.UserService;;
 
 @RestController
 // @CachePut(value = "crud", key = "#user.id")
 @RequestMapping("/api/")
 public class UserController {
+    private UserService userService;
+
     @Autowired
     private UserRepository userRepository;
 
     // get all users
     @GetMapping("/users")
     @Cacheable("users")
-    public List<User> getAllUsers()
-    {
-        return userRepository.findAll();
+    public List<User> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        if (users.isEmpty()) throw new UserIdNotFoundException();
+        else return users;
     }
+    // public List<User> getAllUsers()
+    // {
+    //     return userRepository.findAll();
+    // }
 
     // create user rest API
     @PostMapping("/users")
