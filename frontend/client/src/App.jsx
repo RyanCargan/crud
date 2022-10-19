@@ -24,8 +24,8 @@ export default function App() {
     <div className='h-screen bg-gray-200 py-4 dark:bg-gray-800 space-y-4 snap-mandatory snap-x'>
 
       {isOpen && <Dialog />}
-      {/* {true && <ItemList URL='https://api.json-generator.com/templates/l8xGVZXtcGsc/data' />} */}
-      <ItemList URL='https://audubon-society-api.herokuapp.com/birds' />
+      {true && <ItemList URL='https://api.json-generator.com/templates/l8xGVZXtcGsc/data' />}
+      {/* <ItemList URL='https://audubon-society-api.herokuapp.com/birds' /> */}
       <ItemList URL='https://audubon-society-api.herokuapp.com/birds' />
 
       <div className={`flex flex-col md:w-1/2 mx-auto hover:bg-blue-400 hover:rounded-lg}`}>
