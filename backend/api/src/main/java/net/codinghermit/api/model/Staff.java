@@ -10,10 +10,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 // @NoArgsConstructor
-public class User implements Serializable {
+public class Staff implements Serializable {
 
-    private long id;
-    private String firstName;
-    private String lastName;
+    private long staffId;
+    private String staffName;
     private String emailId;
 }

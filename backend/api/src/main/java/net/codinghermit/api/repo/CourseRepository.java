@@ -2,27 +2,27 @@ package net.codinghermit.api.repo;
 
 import org.apache.ibatis.annotations.*;
 
-import net.codinghermit.api.model.User;
+import net.codinghermit.api.model.Course;
 
 import java.util.List;
 
 @Mapper
 public interface CourseRepository {
 
-    @Select("select * from users")
-    public List<User> findAll();
+    @Select("SELECT * FROM courses")
+    public List<Course> findAll();
 
-    @Select("SELECT * FROM users WHERE id = #{id}")
-    public User findById(long id);
+    @Select("SELECT * FROM courses WHERE courseId = #{courseId}")
+    public Course findById(long courseId);
 
-    @Delete("DELETE FROM users WHERE id = #{id}")
-    public int deleteById(long id);
+    @Delete("DELETE FROM courses WHERE courseId = #{courseId}")
+    public int deleteById(long courseId);
 
-    @Insert("INSERT INTO users(id, firstName, lastName,emailId) " +
-         " VALUES (#{id}, #{firstName}, #{lastName}, #{emailId})")
-    public int insert(User user);
+    @Insert("INSERT INTO courses(courseId, courseName, staffId) " +
+	    " VALUES (#{courseId}, #{courseName}, #{staffId})")
+    public int insert(Course course);
 
-    @Update("Update users set firstName=#{firstName}, " +
-         " lastName=#{lastName}, emailId=#{emailId} where id=#{id}")
-    public int update(User user);
+    @Update("UPDATE courses SET " +
+	    " courseName=#{courseName}, staffId=#{staffId} WHERE courseId=#{courseId}")
+    public int update(Course course);
 }

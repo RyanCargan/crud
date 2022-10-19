@@ -1,38 +1,11 @@
-spring:
-  # Database
-  datasource:
+spring: # Framework
+  datasource: # Database
     url: jdbc:postgresql://localhost:5432/codinghermit
     username: postgres
     password: 1997
     driver-class-name: org.postgresql.Driver
-  security:
-    user:
-      name: admin
-      password: 123
-    oauth2:
-      client:
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
-            user-name-attribute: user1
-        registration:
-          keycloak:
-            client-id: login-app
-            authorization-grant-type: authorization_code
-            scope: openid
-  # Cache
-  redis:
+  redis: # Cache
     host: localhost
     port: 6379
-  # cache:
-  #   type: redis
-  #   redis:
-  #     time-to-live: 6000
-
 server:
   port: 4000
-
-# Env
-# caching:
-#   spring:
-#     userListTTL: 6000

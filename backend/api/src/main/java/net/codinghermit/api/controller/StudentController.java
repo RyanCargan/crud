@@ -1,13 +1,14 @@
 package net.codinghermit.api.controller;
 
 import net.codinghermit.api.
-                           exception.UserIdAlreadyExistException;
+                           exception.StudentIdAlreadyExistException;
 import net.codinghermit.api.
-                           exception.UserIdNotFoundException;
-import net.codinghermit.api.model.User;
-import net.codinghermit.api.repo.UserRepository;
+                           exception.StudentIdNotFoundException;
+import net.codinghermit.api.model.Student;
+import net.codinghermit.api.repo.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
@@ -18,58 +19,58 @@ import java.util.Map;
 @RequestMapping("/api/")
 public class StudentController {
     @Autowired
-    private UserRepository userRepository;
+    private StudentRepository studentRepository;
 
-    // get all users
+    // get all students
     @GetMapping("/students")
-    public List<User> getAllUsers()
+    @Cacheable("students")
+    public List<Student> getAllStudents()
     {
-        return userRepository.findAll();
+        return studentRepository.findAll();
     }
 
-    // create user rest API
+    // create student rest API
     @PostMapping("/students")
-    public User createUser(@RequestBody User user)  {
-        if(userRepository.findById(user.getId())==null) {
-            int id = userRepository.insert(user);
-            System.out.println(id);
-            return userRepository.findById(user.getId());
+    public Student createStudent(@RequestBody Student student)  {
+        if(studentRepository.findById(student.getStudentId())==null) {
+            int studentid = studentRepository.insert(student);
+            System.out.println(studentid);
+            return studentRepository.findById(student.getStudentId());
         }else
         {
-            throw new UserIdAlreadyExistException();
+            throw new StudentIdAlreadyExistException();
         }
 
     }
 
-    // get user by id rest api
-    @GetMapping("/students/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userRepository.findById(id);
-        if(user==null)
+    // get student by studentid rest api
+    @GetMapping("/students/{studentid}")
+    public ResponseEntity<Student> getStudentById(@PathVariable Long studentid) {
+        Student student = studentRepository.findById(studentid);
+        if(student==null)
         {
-            throw new UserIdNotFoundException();
+            throw new StudentIdNotFoundException();
         }
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(student);
     }
 
-    // update user rest api
-    @PutMapping("/students/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id,
-                @RequestBody User userDetails) {
-    if(userRepository.update(new User(id, userDetails.getFirstName(), 
-            userDetails.getLastName(), userDetails.getEmailId()))==0)
+    // update student rest api
+    @PutMapping("/students/{studentid}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long studentid,
+                @RequestBody Student studentDetails) {
+    if(studentRepository.update(new Student(studentid, studentDetails.getStudentName(), studentDetails.getEmailId()))==0)
                 {
-                    throw new UserIdNotFoundException();
+                    throw new StudentIdNotFoundException();
                 }
 
-        return ResponseEntity.ok(userRepository.findById(id));
+        return ResponseEntity.ok(studentRepository.findById(studentid));
     }
 
-    // delete user rest api
-    @DeleteMapping("/students/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteUser
-               (@PathVariable Long id) {
-        userRepository.deleteById(id);
+    // delete student rest api
+    @DeleteMapping("/students/{studentid}")
+    public ResponseEntity<Map<String, Boolean>> deleteStudent
+               (@PathVariable Long studentid) {
+        studentRepository.deleteById(studentid);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);

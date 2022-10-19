@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserIdNotFoundException.class)
+    @ExceptionHandler(StaffIdNotFoundException.class)
     public ResponseEntity<CustomErrorResponse> 
         globalExceptionHandler(Exception ex, WebRequest request) {
         CustomErrorResponse errors = new CustomErrorResponse();
@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(UserIdAlreadyExistException.class)
+    @ExceptionHandler(StaffIdAlreadyExistException.class)
     public ResponseEntity<CustomErrorResponse> 
         globalExceptionHandler2(Exception ex, WebRequest request) {
 
