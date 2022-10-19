@@ -9,6 +9,17 @@ spring:
     user:
       name: admin
       password: 123
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+            user-name-attribute: user1
+        registration:
+          keycloak:
+            client-id: login-app
+            authorization-grant-type: authorization_code
+            scope: openid
   # Cache
   redis:
     host: localhost
