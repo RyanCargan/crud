@@ -1,6 +1,8 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 
 import reactLogo from './assets/react.svg'
+
+import shallow from 'zustand/shallow'
 
 import {
   // Components
@@ -8,6 +10,7 @@ import {
   Dropdown,
   Dialog,
   ItemList,
+  Form,
   // Mocks
   items,
   // Utils
@@ -19,17 +22,30 @@ export default function App() {
   const isOpen = useStore((state) => state.isOpen)
   // const open = useStore((state) => state.open)
 	// const close = useStore((state) => state.close)
+  const [showForm, toggleForm] = useStore(
+		(state) => [state.showForm, state.toggleForm],
+		shallow
+	)
+  // const {showForm, toggleForm} = useStore(
+	// 	(state) => ({showForm: state.showForm, toggleForm: state.toggleForm}),
+	// 	shallow
+	// )
 
   return (
     <div className='h-screen bg-gray-200 py-4 dark:bg-gray-800 space-y-4 snap-mandatory snap-x'>
 
       {isOpen && <Dialog />}
-      {true && <ItemList URL='https://api.json-generator.com/templates/l8xGVZXtcGsc/data' />}
-      {/* <ItemList URL='https://audubon-society-api.herokuapp.com/birds' /> */}
-      <ItemList URL='https://audubon-society-api.herokuapp.com/birds' />
+
+      {/* <ItemList URL='https://api.json-generator.com/templates/l8xGVZXtcGsc/data' />
+      <ItemList URL='https://audubon-society-api.herokuapp.com/birds' /> */}
 
       <div className={`flex flex-col md:w-1/2 mx-auto hover:bg-blue-400 hover:rounded-lg}`}>
         <Dropdown />
+      </div>
+
+      <div>
+        <button onClick={toggleForm}>Form</button>
+        {showForm && <Form />}
       </div>
 
       <div className='flex flex-col space-y-4'>

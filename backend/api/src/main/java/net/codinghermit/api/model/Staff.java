@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-// import lombok.NoArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-// @NoArgsConstructor
+@NoArgsConstructor
 public class Staff implements Serializable {
 
     private long staffId;

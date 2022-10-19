@@ -3,7 +3,6 @@ import axios from "axios"
 
 export const ItemList = (props) => {
   const [getItems, setItems] = useState([])
-//   const [getUrlType, setUrlType] = useState([false, false])
 
 	const token = "gxrqe1wm1w1mt0aa3yn5flmynb9cfujddl5avpqi"
 
@@ -30,13 +29,6 @@ export const ItemList = (props) => {
 			console.log("PRESENT")
         setItems(res.data)
 
-		// if ('image' in res.data[0]) {
-		// 	setUrlType[0] = true
-		// } else if ('placeholder' in res.data[0]) {
-		// 	setUrlType[1] = true
-		// } else {
-		// 	setUrlType[0] = true
-		// }
       } catch (error) {
         console.log(error)
       }
@@ -50,18 +42,12 @@ export const ItemList = (props) => {
     <div>
       {getItems.map((item) => (
 		('image' in item) === true
-        ? <img src={item.image} alt={item.image}></img>
+        ? <img key={item} src={item.image} alt={item.image}></img>
 		: null
-		// ('thumbnail' in item) === true
-        // ? <img src={item.thumbnail} alt={item.thumbnail}></img>
-		// : null
       ))}
       {getItems.map((item) => (
-		// ('image' in item) === true
-        // ? <img src={item.image} alt={item.image}></img>
-		// : null
 		('placeholder' in item) === true
-        ? <> {item.placeholder}<br /> </>
+        ? <div key={item.id}> {item.placeholder}<br /> </div>
 		: null
       ))}
     </div>
