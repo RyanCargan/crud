@@ -1,0 +1,41 @@
+version: '3'
+services:
+    api:
+        container_name: api
+        build:
+            context: docker-api
+            dockerfile: Dockerfile
+            # target: deploy
+        image: api:latest
+        ports:
+            - 4000:4000
+        networks:
+            - shared-network
+    client:
+        container_name: client
+        build:
+            context: docker-client
+            dockerfile: Dockerfile
+            target: deploy
+        image: client:latest
+        ports:
+            - 3000:3000
+        networks:
+            - shared-network
+    nginx:
+      image: nginx:1.15-alpine
+      ports:
+        - "80:80"
+        - "443:443"
+      volumes:
+        - ./ops/data/nginx:/etc/nginx/conf.d
+        # - ./ops/data/certbot/conf:/etc/letsencrypt
+        # - ./ops/data/certbot/www:/var/www/certbot
+    # certbot:
+    #   image: certbot/certbot
+    #   volumes:
+    #     - ./ops/data/certbot/conf:/etc/letsencrypt
+    #     - ./ops/data/certbot/www:/var/www/certbot
+networks:
+    shared-network:
+        driver: bridge

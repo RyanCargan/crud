@@ -6,7 +6,7 @@ export const Form = () => {
 	// const [email, setEmail] = useState('')
 	// const [id, setId] = useState(0)
 
-    const handleSubmit = async (e) => {
+    const handlePost = async (e) => {
         e.preventDefault()
         // setName(e.target.name.value)
 		const name = e.target.name.value
@@ -45,14 +45,38 @@ export const Form = () => {
 		}
     }
 
+	const handleGet = async (e) => {
+        e.preventDefault()
+		const name = e.target.name.value
+		try {
+			let res = await axios.get(
+				`http://localhost:4000/api/${name}`,
+			)
+			return
+		} catch (err) {
+			console.error(err)
+		}
+    }
+
 	return (
 		<>
-            <form onSubmit={handleSubmit}>
+			{true &&
+            <form onSubmit={handlePost}>
                 <input type="text" name="name" placeholder="Enter Name:" />
                 <input type="text" name="email" placeholder="Enter Email:" />
 				<input type="number" name="id" placeholder="Enter ID:" />
                 <button type="submit">Submit</button>
-            </form>
+            </form>}
+			{true &&
+            <form onSubmit={handleGet}>
+                <input type="text" name="name" placeholder="Enter Name:" />
+                <button type="submit">Submit</button>
+            </form>}
+			{true &&
+            <form onSubmit={handleGet}>
+                <input type="text" name="name" placeholder="Enter Name:" />
+                <button type="submit">Submit</button>
+            </form>}
 		</>
 	);
 }

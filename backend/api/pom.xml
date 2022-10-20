@@ -19,6 +19,25 @@
 
 	<dependencies>
 
+		<!-- R2DBC (Non-Blocking JDBC) -->
+		<!-- <dependency>
+			<groupId>pro.chenggang</groupId>
+			<artifactId>mybatis-r2dbc-spring</artifactId>
+			<version>1.2.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>pro.chenggang</groupId>
+			<artifactId>mybatis-r2dbc</artifactId>
+			<version>1.2.4.RELEASE</version>
+		</dependency> -->
+
+		<!-- WebFlux -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<version>2.7.4</version>
+		</dependency> -->
+
 		<!-- OAuth2.0 Client -->
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -96,13 +115,6 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Test Starter -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
         <!--MyBatis ORM-->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -115,6 +127,22 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Testing -->
+
+		<!-- Test Starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Security Test Starter -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>5.7.4</version>
 		</dependency>
 
 	</dependencies>

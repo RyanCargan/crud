@@ -8,6 +8,7 @@ import net.codinghermit.api.model.Course;
 import net.codinghermit.api.repo.CourseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,17 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+    // empty cache
+    @GetMapping("/clear/courses")
+    @CacheEvict(value = "courses", allEntries = true)
+    // @Scheduled(fixedRateString = "${caching.staffListTTL}")
+    public void emptyCoursesCache() {
+        System.out.println("Emptying courses cache!");
+    }
+
     // create course rest API
     @PostMapping("/courses")
+    @CacheEvict(value = "courses", allEntries = true)
     public Course createCourse(@RequestBody Course course)  {
         if(courseRepository.findById(course.getCourseId())==null) {
             int courseId = courseRepository.insert(course);
@@ -56,6 +66,7 @@ public class CourseController {
 
     // update course rest api
     @PutMapping("/courses/{courseId}")
+    @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
                 @RequestBody Course courseDetails) {
     if(courseRepository.update(new Course(courseId, courseDetails.getCourseName(), courseDetails.getStaffId()))==0)
@@ -68,6 +79,7 @@ public class CourseController {
 
     // delete course rest api
     @DeleteMapping("/courses/{courseId}")
+    @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteCourse
                (@PathVariable Long courseId) {
         courseRepository.deleteById(courseId);

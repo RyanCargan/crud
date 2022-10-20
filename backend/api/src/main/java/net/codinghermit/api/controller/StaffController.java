@@ -49,9 +49,8 @@ public class StaffController {
         return staffRepository.findAll();
     }
 
-
     // empty cache
-    @GetMapping("/empty")
+    @GetMapping("/clear/staffs")
     @CacheEvict(value = "staffs", allEntries = true)
     // @Scheduled(fixedRateString = "${caching.staffListTTL}")
     public void emptyStaffsCache() {
@@ -60,6 +59,7 @@ public class StaffController {
 
     // create staff rest API
     @PostMapping("/staffs")
+    @CacheEvict(value = "staffs", allEntries = true)
     public Staff createStaff(@RequestBody Staff staff)  {
         if(staffRepository.findById(staff.getStaffId())==null) {
             int staffid = staffRepository.insert(staff);
@@ -85,6 +85,7 @@ public class StaffController {
 
     // update staff rest api
     @PutMapping("/staffs/{staffid}")
+    @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Staff> updateStaff(@PathVariable Long staffid,
                 @RequestBody Staff staffDetails) {
     if(staffRepository.update(new Staff(staffid, staffDetails.getStaffName(), staffDetails.getEmailId()))==0)
@@ -97,6 +98,7 @@ public class StaffController {
 
     // delete staff rest api
     @DeleteMapping("/staffs/{staffid}")
+    @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStaff
                (@PathVariable Long staffid) {
         staffRepository.deleteById(staffid);

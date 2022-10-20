@@ -8,8 +8,10 @@ import net.codinghermit.api.model.Student;
 import net.codinghermit.api.repo.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +31,18 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+    // empty cache
+    @GetMapping("/clear/students")
+    @CacheEvict(value = "students", allEntries = true)
+    // @Scheduled(fixedRateString = "${caching.staffListTTL}")
+    public void emptyStudentsCache() {
+        System.out.println("Emptying students cache!");
+    }
+
     // create student rest API
+    @Async
     @PostMapping("/students")
+    @CacheEvict(value = "students", allEntries = true)
     public Student createStudent(@RequestBody Student student)  {
         if(studentRepository.findById(student.getStudentId())==null) {
             int studentid = studentRepository.insert(student);
@@ -56,6 +68,7 @@ public class StudentController {
 
     // update student rest api
     @PutMapping("/students/{studentid}")
+    @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Student> updateStudent(@PathVariable Long studentid,
                 @RequestBody Student studentDetails) {
     if(studentRepository.update(new Student(studentid, studentDetails.getStudentName(), studentDetails.getEmailId()))==0)
@@ -68,6 +81,7 @@ public class StudentController {
 
     // delete student rest api
     @DeleteMapping("/students/{studentid}")
+    @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStudent
                (@PathVariable Long studentid) {
         studentRepository.deleteById(studentid);
