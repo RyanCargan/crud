@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheEvict;
 // import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 // import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,7 @@ public class StaffController {
     }
 
     // create staff rest API
+    @Async("asyncExecutor")
     @PostMapping("/staffs")
     @CacheEvict(value = "staffs", allEntries = true)
     public Staff createStaff(@RequestBody Staff staff)  {
@@ -84,6 +86,7 @@ public class StaffController {
     }
 
     // update staff rest api
+    @Async("asyncExecutor")
     @PutMapping("/staffs/{staffid}")
     @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Staff> updateStaff(@PathVariable Long staffid,
@@ -97,6 +100,7 @@ public class StaffController {
     }
 
     // delete staff rest api
+    @Async("asyncExecutor")
     @DeleteMapping("/staffs/{staffid}")
     @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStaff

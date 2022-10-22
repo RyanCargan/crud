@@ -12,10 +12,12 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
+// import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+// import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/")
@@ -26,6 +28,7 @@ public class StudentController {
     // get all students
     @GetMapping("/students")
     @Cacheable("students")
+    // public List<CompletableFuture<Student>> getAllStudents()
     public List<Student> getAllStudents()
     {
         return studentRepository.findAll();
@@ -40,13 +43,21 @@ public class StudentController {
     }
 
     // create student rest API
-    @Async
+    @Async("asyncExecutor")
     @PostMapping("/students")
     @CacheEvict(value = "students", allEntries = true)
     public Student createStudent(@RequestBody Student student)  {
         if(studentRepository.findById(student.getStudentId())==null) {
             int studentid = studentRepository.insert(student);
             System.out.println(studentid);
+
+            // try {
+            //     Thread.sleep(10000);
+            // } catch (InterruptedException e) {
+            //     e.printStackTrace();
+            // }
+            // System.out.println("I take 10 seconds to complete on a thread named: " + Thread.currentThread().getName());
+
             return studentRepository.findById(student.getStudentId());
         }else
         {
@@ -67,6 +78,7 @@ public class StudentController {
     }
 
     // update student rest api
+    @Async("asyncExecutor")
     @PutMapping("/students/{studentid}")
     @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Student> updateStudent(@PathVariable Long studentid,
@@ -80,6 +92,7 @@ public class StudentController {
     }
 
     // delete student rest api
+    @Async("asyncExecutor")
     @DeleteMapping("/students/{studentid}")
     @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStudent

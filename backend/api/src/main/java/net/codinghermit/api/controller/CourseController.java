@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +40,7 @@ public class CourseController {
     }
 
     // create course rest API
+    @Async("asyncExecutor")
     @PostMapping("/courses")
     @CacheEvict(value = "courses", allEntries = true)
     public Course createCourse(@RequestBody Course course)  {
@@ -65,6 +67,7 @@ public class CourseController {
     }
 
     // update course rest api
+    @Async("asyncExecutor")
     @PutMapping("/courses/{courseId}")
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
@@ -78,6 +81,7 @@ public class CourseController {
     }
 
     // delete course rest api
+    @Async("asyncExecutor")
     @DeleteMapping("/courses/{courseId}")
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteCourse
