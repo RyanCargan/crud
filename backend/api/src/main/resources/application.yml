@@ -7,9 +7,9 @@ spring: # Framework
   redis: # Cache
     host: localhost
     port: 6379
-  security:
-    user:
-      name: admin
-      password: 123
+  # security:
+  #   user:
+  #     name: admin
+  #     password: 123
 server:
   port: 4000
