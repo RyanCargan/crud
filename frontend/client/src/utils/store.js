@@ -9,6 +9,27 @@ export const useStore = create(devtools((set) => ({
   showForm: false,
   // setForm: () => set({ showForm: !showForm }),
   toggleForm: () => set((state) => ({ showForm: !state.showForm })),
+  items: [
+    {
+      "id": 1,
+      "title": "Title 1",
+      "price": 109.95,
+      "description": "Description...",
+      "category": "Category",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": 2,
+      "title": "Title 2",
+      "price": 109.95,
+      "description": "Description...",
+      "category": "Category",
+      "image": "https://picsum.photos/200/300"
+    },
+  ],
+  setItems: (items) => set(() => ({ items: items })),
+  // setItems:  (newItems) => set(({ items: newItems })),
+  // clearItems:  () => set((state) => ({ items: [] })),
 })))
 
 // const initialState = {

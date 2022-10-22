@@ -1,10 +1,12 @@
 package net.codinghermit.api;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DummyService {
 
+    @Async
     public void processSomethingForLong() {
         try {
             Thread.sleep(10000);
