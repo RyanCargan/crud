@@ -1,4 +1,4 @@
-package net.codinghermit.api;
+package net.codinghermit.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

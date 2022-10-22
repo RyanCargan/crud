@@ -1,4 +1,4 @@
-package net.codinghermit.api;
+package net.codinghermit.api.config;
 
 import java.util.concurrent.Executor;
 
