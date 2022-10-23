@@ -29,11 +29,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin().permitAll()
-            .and()
-            .logout().permitAll();
+                .antMatchers("/", "/home").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                // .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll()
+                .and()
+            .httpBasic()
+                .and()
+            // .cors()
+            //     .and()
+            .csrf()
+                .disable();
 
 			return http.build();
     }

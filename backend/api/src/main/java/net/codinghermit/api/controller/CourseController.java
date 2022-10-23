@@ -10,6 +10,7 @@ import net.codinghermit.api.repo.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,7 @@ public class CourseController {
     // create course rest API
     @Async("asyncExecutor")
     @PostMapping("/courses")
+    @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "courses", allEntries = true)
     public Course createCourse(@RequestBody Course course)  {
         if(courseRepository.findById(course.getCourseId())==null) {
@@ -68,6 +70,7 @@ public class CourseController {
     // update course rest api
     @Async("asyncExecutor")
     @PutMapping("/courses/{courseId}")
+    @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
                 @RequestBody Course courseDetails) {
@@ -82,6 +85,7 @@ public class CourseController {
     // delete course rest api
     @Async("asyncExecutor")
     @DeleteMapping("/courses/{courseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteCourse
                (@PathVariable Long courseId) {

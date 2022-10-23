@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.codinghermit.api.
@@ -52,6 +54,7 @@ public class StaffController {
     // create staff rest API
     @Async("asyncExecutor")
     @PostMapping("/staffs")
+    @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "staffs", allEntries = true)
     public Staff createStaff(@RequestBody Staff staff)  {
         if(staffRepository.findById(staff.getStaffId())==null) {
@@ -79,6 +82,7 @@ public class StaffController {
     // update staff rest api
     @Async("asyncExecutor")
     @PutMapping("/staffs/{staffid}")
+    @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Staff> updateStaff(@PathVariable Long staffid,
                 @RequestBody Staff staffDetails) {
@@ -93,6 +97,7 @@ public class StaffController {
     // delete staff rest api
     @Async("asyncExecutor")
     @DeleteMapping("/staffs/{staffid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "staffs", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStaff
                (@PathVariable Long staffid) {

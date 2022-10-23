@@ -11,9 +11,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course implements Serializable {
+public class Enrol implements Serializable {
 
-    private long courseId;
-    private String courseName;
-    private long staffId;
+	// private long enrolId;
+  private long courseId;
+	private long studentId;
 }
