@@ -82,7 +82,7 @@ public class StudentController {
     @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Student> updateStudent(@PathVariable Long studentid,
                 @RequestBody Student studentDetails) {
-    if(studentRepository.update(new Student(studentid, studentDetails.getStudentName(), studentDetails.getEmailId()))==0)
+    if(studentRepository.update(new Student(studentid, studentDetails.getStudentName(), studentDetails.getEmailId(), studentDetails.getRole(), studentDetails.getPassword()))==0)
                 {
                     throw new StudentIdNotFoundException();
                 }
