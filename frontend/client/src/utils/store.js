@@ -26,4 +26,6 @@ export const useStore = create(devtools((set) => ({
     },
   ],
   setItems: (items) => set(() => ({ items: items })),
+  body: {},
+  setBody: (body) => set(() => ({ body: body })),
 })))

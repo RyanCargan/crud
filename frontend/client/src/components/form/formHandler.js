@@ -5,32 +5,41 @@ const url = 'http://localhost:4000/api/'
 
 const headers = {
 	// Authorization: `Bearer ${token}`,
-	'Content-Type': 'application/json',
+	'Authorization': 'Basic',
+	// 'Content-Type': 'application/x-www-form-urlencoded',
+	// 'Content-Type': 'application/json',
 	'access-control-allow-origin': '*',
 }
 
-const post = async (e, stub) => {
+const auth = {
+  username: 'Staff1',
+  password: '123'
+}
+
+const post = async (e, stub, body) => {
 	e.preventDefault()
 
-	const name = e.target.name.value
-	const email = e.target.email.value
-	const id = e.target.id.value
+	// const name = e.target.name.value
+	// const email = e.target.email.value
+	// const id = e.target.id.value
+	// const response = await axios.post('http://localhost:4000/login',{
+	// 	username: auth.username,
+	// 	password: auth.password
+	// },
+	// {
+	// 	'Authorization': 'Basic',
+	// 	'Content-Type': 'application/x-www-form-urlencoded',
+	// 	'access-control-allow-origin': '*',
+	// })
 
 	try {
 		let res = await axios.post(
 			`${url}${stub}`,
+			body,
 			{
-				studentName: name,
-				emailId: email,
-				studentId: id
-			},
-			{
-				// headers: {
-				// 	// Authorization: `Bearer ${token}`,
-				// 	'Content-Type': 'application/json',
-				// 	'access-control-allow-origin': '*',
-				// }
-				headers: headers
+				headers: headers,
+				withCredentials: true,
+				auth: auth
 			}
 		)
 		console.log(res)
