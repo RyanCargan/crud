@@ -31,11 +31,11 @@ export const useStore = create(devtools(immer((set) => ({
   setBody: (body) => set(() => ({ body: body })),
   inputs: {
     createStd: {
-      studentId: null,
-      studentName: null,
-      emailId: null,
-      role: null,
-      password: null
+      studentId: 3,
+      studentName: 'Student3',
+      emailId: 'student3@email.com',
+      role: 'ROLE_USER',
+      password: '123'
     }
   },
   setInputs: (selector, input) => set((state) => { state.inputs.createStd[selector] = input }),
