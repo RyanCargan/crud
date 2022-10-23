@@ -2,6 +2,8 @@ import {
     formHandler,
     useStore,
 } from '../../utils/barrel'
+import shallow from 'zustand/shallow'
+import {useRef, useEffect} from 'react'
 
 // const [body, setBody] = useStore(
 //     (state) => [state.body, state.setBody],
@@ -22,6 +24,19 @@ import {
 // }
 
 export const FormSelector = () => {
+
+    const [inputs, setInputs] = useStore(
+        (state) => [state.inputs, state.setInputs],
+        shallow
+    )
+
+    // const ref = useRef(null)
+    const createStdName = useRef(null)
+
+    useEffect(() => {
+        setInputs(createStdName.current.value)
+    }, [])
+
 	return (
 		<div className='m-auto'>
 
@@ -30,16 +45,26 @@ export const FormSelector = () => {
                 e,
                 'students',
                 {
-                    studentId: 3,
+                    // studentId: 3,
+                    // studentName: "Student3",
+                    // emailId: "student3@email.com",
+                    // role: "ROLE_USER",
+                    // password: "123"
+                    studentId: inputs[0],
                     studentName: "Student3",
                     emailId: "student3@email.com",
                     role: "ROLE_USER",
                     password: "123"
                 }
             )}>
-                <input type="text" name="name" placeholder="Enter Name:" />
-                <input type="text" name="email" placeholder="Enter Email:" />
-				<input type="number" name="id" placeholder="Enter ID:" />
+                <input ref={createStdName} defaultValue={3} type="number" name="id" placeholder="Enter ID:"
+                    // onChange={(e) => setInputs([...inputs, e.target.value])}/>
+                    // onChange={(e) => setInputs([e.target.value])}/>
+                    onChange={(e) => setInputs({...inputs, createStd: {studentName: e.target.value}})}/>
+                <input defaultValue='Student3' type="text" name="name" placeholder="Enter Name:" />
+				<input defaultValue='student3@email.com' type="text" name="email" placeholder="Enter Email:" />
+                <input defaultValue='ROLE_USER' type="text" name="role" placeholder="Enter Role:" />
+				<input defaultValue='123' type="password" name="password" placeholder="Enter Password:" />
                 <button type="submit">Submit</button>
             </form> : null}
             <br />

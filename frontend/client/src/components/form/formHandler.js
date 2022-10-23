@@ -16,7 +16,7 @@ const auth = {
   password: '123'
 }
 
-const post = async (e, stub, body) => {
+const login = async (e, stub) => {
 	e.preventDefault()
 
 	// const name = e.target.name.value
@@ -31,6 +31,26 @@ const post = async (e, stub, body) => {
 	// 	'Content-Type': 'application/x-www-form-urlencoded',
 	// 	'access-control-allow-origin': '*',
 	// })
+
+	try {
+		let res = await axios.post(
+			`${url}${stub}`,
+			{},
+			{
+				headers: headers,
+				withCredentials: true,
+				auth: auth
+			}
+		)
+		console.log(res)
+		return
+	} catch (err) {
+		console.error(err)
+	}
+}
+
+const post = async (e, stub, body) => {
+	e.preventDefault()
 
 	try {
 		let res = await axios.post(

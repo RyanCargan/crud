@@ -28,4 +28,14 @@ export const useStore = create(devtools((set) => ({
   setItems: (items) => set(() => ({ items: items })),
   body: {},
   setBody: (body) => set(() => ({ body: body })),
+  inputs: {
+    createStd: {
+      studentId: null,
+      studentName: null,
+      emailId: null,
+      role: null,
+      password: null
+    }
+  },
+  setInputs: (inputs) => set(() => ({ inputs: inputs })),
 })))
