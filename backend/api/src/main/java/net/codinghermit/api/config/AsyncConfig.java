@@ -22,9 +22,4 @@ public class AsyncConfig
     executor.initialize();
     return executor;
   }
-
-//   @Override
-//   public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-// 	  return new CustomAsyncExceptionHandler();
-//   }
 }

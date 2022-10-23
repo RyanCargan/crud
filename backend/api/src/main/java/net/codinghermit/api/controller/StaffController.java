@@ -6,11 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-// import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
-// import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +24,6 @@ import net.codinghermit.api.
                            exception.StaffIdNotFoundException;
 import net.codinghermit.api.model.Staff;
 import net.codinghermit.api.repo.StaffRepository;
-// import net.codinghermit.api.service.StaffService;;
 
 @RestController
 @RequestMapping("/api/")
@@ -39,12 +36,6 @@ public class StaffController {
     // get all staffs
     @GetMapping("/staffs")
     @Cacheable("staffs")
-    // @CachePut(cacheNames = {"staffs"})
-    // public List<Staff> getAllStaffs() {
-    //     List<Staff> staffs = staffService.getAllStaffs();
-    //     if (staffs.isEmpty()) throw new StaffIdNotFoundException();
-    //         else return staffs;
-    // }
     public List<Staff> getAllStaffs()
     {
         return staffRepository.findAll();

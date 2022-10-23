@@ -1,4 +1,3 @@
-// import React from 'react';
 import { formHandler } from '../../utils/barrel'
 
 export const FormSelector = () => {

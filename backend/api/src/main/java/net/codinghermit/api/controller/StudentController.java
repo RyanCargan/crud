@@ -12,12 +12,10 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
-// import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-// import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/")
@@ -28,7 +26,6 @@ public class StudentController {
     // get all students
     @GetMapping("/students")
     @Cacheable("students")
-    // public List<CompletableFuture<Student>> getAllStudents()
     public List<Student> getAllStudents()
     {
         return studentRepository.findAll();
@@ -37,7 +34,6 @@ public class StudentController {
     // empty cache
     @GetMapping("/clear/students")
     @CacheEvict(value = "students", allEntries = true)
-    // @Scheduled(fixedRateString = "${caching.staffListTTL}")
     public void emptyStudentsCache() {
         System.out.println("Emptying students cache!");
     }

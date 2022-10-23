@@ -34,7 +34,6 @@ public class CourseController {
     // empty cache
     @GetMapping("/clear/courses")
     @CacheEvict(value = "courses", allEntries = true)
-    // @Scheduled(fixedRateString = "${caching.staffListTTL}")
     public void emptyCoursesCache() {
         System.out.println("Emptying courses cache!");
     }

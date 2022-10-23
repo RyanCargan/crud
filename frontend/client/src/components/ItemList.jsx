@@ -4,39 +4,6 @@ import { useStore } from '../utils/barrel'
 import shallow from 'zustand/shallow'
 
 export const ItemList = (props) => {
-  // const [getItems, setItems] = useState([])
-
-	// const token = "gxrqe1wm1w1mt0aa3yn5flmynb9cfujddl5avpqi"
-
-	// const config = {
-	// 	headers: { Authorization: `Bearer ${token}` }
-	// }
-
-	// const bodyParameters = {
-	// 	key: "value"
-	// }
-
-  // useEffect(() => {
-  //   async function fetchItems() {
-  //     try {
-  //       const res = await axios.get(
-	// 		props.URL,
-	// 		// bodyParameters,
-	// 		config,
-	// 	)
-  //       console.log(res.data)
-	// 	console.log("REQ SUCCESS")
-
-	// 	if ('image' in res.data[0])
-	// 		console.log("PRESENT")
-  //       setItems(res.data)
-
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchItems()
-  // }, [])
 
   const array = [
     {

@@ -37,24 +37,6 @@ CREATE TABLE IF NOT EXISTS enrollments (
   , PRIMARY KEY (courseId, studentId)
 );
 
--- DROP TABLE IF EXISTS user_authorities CASCADE;
--- CREATE TABLE IF NOT EXISTS user_authorities (
---     id BIGINT PRIMARY KEY
---     , user_id   BIGINT NOT NULL
---     , authority varchar(50) NOT NULL
---     , FOREIGN KEY (user_id) REFERENCES staffs(staffId)
---     , CONSTRAINT username_authorities_unique UNIQUE (user_id, authority)
--- );
-
--- DROP TABLE IF EXISTS users CASCADE;
--- CREATE TABLE IF NOT EXISTS users (
---     id BIGINT PRIMARY KEY
---     , username VARCHAR(100) NOT NULL
---     , password VARCHAR(100) NOT NULL
---     , enabled  BOOLEAN NOT NULL
---     , CONSTRAINT username_unique UNIQUE (username)
--- );
-
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
@@ -87,38 +69,3 @@ INSERT INTO students VALUES (2, 'Student2', 'student2@email.com') ON CONFLICT DO
 
 INSERT INTO enrollments VALUES (1, 1) ON CONFLICT DO NOTHING;
 INSERT INTO enrollments VALUES (2, 2) ON CONFLICT DO NOTHING;
-
--- INSERT INTO users VALUES (DEFAULT, 'ADMIN') ON CONFLICT DO NOTHING;
-
--- GENERATED ALWAYS AS IDENTITY
-
--- CREATE TABLE IF NOT EXISTS roles (
---   role_id SERIAL NOT NULL PRIMARY KEY,
---   role_name VARCHAR(255) DEFAULT NULL
--- );
-
--- CREATE TABLE IF NOT EXISTS users (
---   user_id SERIAL NOT NULL PRIMARY KEY,
---   active int DEFAULT 0,
---   login_id VARCHAR(255) NOT NULL,
---   user_name VARCHAR(255) NOT NULL,
---   password VARCHAR(255) NOT NULL
--- );
-
--- CREATE TABLE IF NOT EXISTS user_roles (
---   user_id INT NOT NULL,
---   role_id INT NOT NULL,
---   PRIMARY KEY (user_id,role_id)
--- );
-
--- INSERT INTO roles VALUES (DEFAULT, 'ADMIN') ON CONFLICT DO NOTHING;
--- INSERT INTO roles VALUES (DEFAULT, 'ADMIN') ON CONFLICT DO UPDATE;
-
--- create table users
--- (
---    id integer not null,
---    firstName varchar(255) not null,
---    lastName varchar(255) not null,
---    emailId varchar(255) not null,
---    primary key(id)
--- );
