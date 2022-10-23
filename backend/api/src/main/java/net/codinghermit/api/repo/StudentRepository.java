@@ -19,10 +19,10 @@ public interface StudentRepository {
     public int deleteById(long studentId);
 
     @Insert("INSERT INTO students(studentId, studentName, emailId, \"role\", \"password\") " +
-          " VALUES (#{studentId}, #{studentName}, #{emailId}, #{role}, #{password})")
+          " VALUES (#{studentId}, #{studentName}, #{emailId}, #{role}, crypt(#{password}, gen_salt('bf', 8)))")
     public int insert(Student user);
 
     @Update("UPDATE students SET " +
-          " studentName=#{studentName}, emailId=#{emailId}, #{role}, #{password} WHERE studentId=#{studentId}")
+          " studentName=#{studentName}, emailId=#{emailId}, role=#{role}, password=crypt(#{password}, gen_salt('bf', 8)) WHERE studentId=#{studentId}")
     public int update(Student user);
 }

@@ -34,8 +34,8 @@ DROP TABLE IF EXISTS courses CASCADE;
 CREATE TABLE IF NOT EXISTS courses (
   courseId BIGINT PRIMARY KEY
   , courseName VARCHAR(128) NOT NULL
-  , staffId BIGINT NOT NULL
-  , FOREIGN KEY (staffId) REFERENCES staffs(staffId)
+  , id BIGINT NOT NULL
+  , FOREIGN KEY (id) REFERENCES users(id)
 );
 
 DROP TABLE IF EXISTS students CASCADE;
@@ -57,14 +57,14 @@ CREATE TABLE IF NOT EXISTS enrollments (
   , PRIMARY KEY (courseId, studentId)
 );
 
-DROP TABLE IF EXISTS user_authorities CASCADE;
-CREATE TABLE IF NOT EXISTS user_authorities (
-    id BIGINT PRIMARY KEY
-    , user_id   BIGINT NOT NULL
-    , authority varchar(50) NOT NULL
-    , FOREIGN KEY (user_id) REFERENCES users(id)
-    , CONSTRAINT username_authorities_unique UNIQUE (user_id, authority)
-);
+-- DROP TABLE IF EXISTS user_authorities CASCADE;
+-- CREATE TABLE IF NOT EXISTS user_authorities (
+--     id BIGINT PRIMARY KEY
+--     , user_id   BIGINT NOT NULL
+--     , authority varchar(50) NOT NULL
+--     , FOREIGN KEY (user_id) REFERENCES users(id)
+--     , CONSTRAINT username_authorities_unique UNIQUE (user_id, authority)
+-- );
 
 -- DROP TABLE IF EXISTS users CASCADE;
 -- CREATE TABLE IF NOT EXISTS users (

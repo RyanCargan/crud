@@ -69,7 +69,7 @@ public class EnrolController {
     }
 
     // get enrollment by enrolid
-    @GetMapping("/enrols/{courseid}{studentid}")
+    @GetMapping("/enrollments/{courseid}/{studentid}")
     public ResponseEntity<Enrol> getEnrolById(@PathVariable Long courseid, @PathVariable Long studentid) {
         Enrol enrol = enrolRepository.findById(courseid, studentid);
         if(enrol==null)
@@ -81,7 +81,7 @@ public class EnrolController {
 
     // update enrol rest api
     // @Async("asyncExecutor")
-    // @PutMapping("/enrols/{enrolid}")
+    // @PutMapping("/enrollments/{enrolid}")
     // @ResponseStatus(HttpStatus.CREATED)
     // @CacheEvict(value = "enrollments", allEntries = true)
     // public ResponseEntity<Enrol> updateEnrol(@PathVariable Long enrolid,
@@ -96,7 +96,7 @@ public class EnrolController {
 
     // delete enrollment
     @Async("asyncExecutor")
-    @DeleteMapping("/enrols/{enrolid}")
+    @DeleteMapping("/enrollments/{enrolid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "enrollments", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteEnrol

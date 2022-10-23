@@ -23,6 +23,6 @@ public interface UserRepository {
     public int insert(User user);
 
     @Update("UPDATE users SET " +
-		" userName=#{userName}, emailId=#{emailId}, #{role}, #{password} where id=#{id}")
+		" userName=#{userName}, emailId=#{emailId}, role=#{role}, password=crypt(#{password}, gen_salt('bf', 8)) where id=#{id}")
     public int update(User user);
 }
