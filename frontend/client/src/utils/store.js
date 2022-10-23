@@ -1,7 +1,8 @@
 import create from 'zustand'
 import { devtools } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
 
-export const useStore = create(devtools((set) => ({
+export const useStore = create(devtools(immer((set) => ({
   isOpen: false,
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
@@ -37,5 +38,10 @@ export const useStore = create(devtools((set) => ({
       password: null
     }
   },
-  setInputs: (inputs) => set(() => ({ inputs: inputs })),
-})))
+  setInputs: (selector, input) => set((state) => { state.inputs.createStd[selector] = input }),
+  // setInputs: (inputs) => set(() => ({ inputs: inputs })),
+  // toggleTodo: (todoId) =>
+  //   set((state) => {
+  //     state.todos[todoId].done = !state.todos[todoId].done
+  // }),
+}))))
