@@ -69,27 +69,37 @@ export const FormSelector = () => {
                 login()
             }}>
                 <div className='bg-white'>(Login)</div><br />
-                <input type="text" name="name" placeholder="Enter Name:"
+                <input value={inputs.authObj.username} type="text" name="name" placeholder="Enter Name:"
                     onChange={(e) => setAuthInputs('username', e.target.value)}/>
-                <input type="password" name="password" placeholder="Enter Pass:"
+                <input value={inputs.authObj.password} type="password" name="password" placeholder="Enter Pass:"
                     onChange={(e) => setAuthInputs('password', e.target.value)}/>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Submit</button>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Login</button>
             </form> : null}
             <br />
 
-            {loggedIn ?
+            {!loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => {
                 formHandler.logout(
                     e
                     , 'logout'
-                    , {}
                 )
-                logout()
+                // logout()
             }}>
                 <div className='bg-white'>(Logout)</div><br />
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Logout</button>
             </form> : null}
             <br /> */}
+
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                onClick={() => {
+                    window.location.replace('http://localhost:4000/login');
+                }}
+            >Login</button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                onClick={() => {
+                    window.location.replace('http://localhost:4000/logout');
+                }}
+            >Logout</button>
 {/* Auth Forms */}
 {/* Student Forms */}
 			{loggedIn ?

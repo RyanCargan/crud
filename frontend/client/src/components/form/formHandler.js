@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const url = 'http://localhost:4000/api/'
+const authUrl = 'http://localhost:4000/'
 // const stub = 'students'
 
 const headers = {
@@ -34,7 +35,7 @@ const login = async (e, stub) => {
 
 	try {
 		let res = await axios.post(
-			`${url}${stub}`,
+			`${authUrl}${stub}`,
 			{},
 			{
 				headers: headers,
@@ -54,7 +55,7 @@ const logout = async (e, stub) => {
 	// const name = e.target.name.value
 	try {
 		let res = await axios.post(
-			`${url}${stub}`,
+			`${authUrl}${stub}`,
 		)
 		console.log(res)
 		return res;
