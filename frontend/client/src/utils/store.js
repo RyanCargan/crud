@@ -54,24 +54,19 @@ export const useStore = create(devtools(immer((set) => ({
       password: '123'
     },
     courseObj: {
-      studentId: 3,
-      studentName: 'Student3',
-      emailId: 'student3@email.com',
-      role: 'ROLE_USER',
-      password: '123'
+      courseId: 3,
+      courseName: 'Course3',
+      id: 3
     },
     enrolObj: {
-      studentId: 3,
-      studentName: 'Student3',
-      emailId: 'student3@email.com',
-      role: 'ROLE_USER',
-      password: '123'
+      courseId: 3,
+      studentId: 3
     },
-    staffObj: {
-      studentId: 3,
-      studentName: 'Student3',
-      emailId: 'student3@email.com',
-      role: 'ROLE_USER',
+    userObj: {
+      id: 3,
+      userName: 'Staff3',
+      emailId: 'staff3@email.com',
+      role: 'ROLE_ADMIN',
       password: '123'
     },
     authObj: {
@@ -82,7 +77,7 @@ export const useStore = create(devtools(immer((set) => ({
   setStudentInputs: (selector, input) => set((state) => { state.inputs.studentObj[selector] = input }),
   setCourseInputs: (selector, input) => set((state) => { state.inputs.courseObj[selector] = input }),
   setEnrolInputs: (selector, input) => set((state) => { state.inputs.enrolObj[selector] = input }),
-  setStaffInputs: (selector, input) => set((state) => { state.inputs.staffObj[selector] = input }),
+  setUserInputs: (selector, input) => set((state) => { state.inputs.staffObj[selector] = input }),
   setAuthInputs: (selector, input) => set((state) => { state.inputs.authObj[selector] = input }),
   loggedIn: true,
   login: () => set({ loggedIn: true }),

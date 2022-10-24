@@ -97,12 +97,17 @@ const put = async (e, stub) => {
 	}
 }
 
-const del = async (e, stub) => {
+const del = async (e, stub, id) => {
 	e.preventDefault()
-	const name = e.target.name.value
+	// const name = e.target.name.value
 	try {
 		let res = await axios.delete(
-			`${url}${stub}`,
+			`${url}${stub}/${id}`,
+			{
+				headers: headers,
+				withCredentials: true,
+				// auth: auth
+			}
 		)
 		console.log(res)
 		return res;

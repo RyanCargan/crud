@@ -32,7 +32,7 @@ export const FormSelector = () => {
         , setStudentInputs
         , setCourseInputs
         , setEnrolInputs
-        , setStaffInputs
+        , setUserInputs
         , setAuthInputs
         , loggedIn
         // , login
@@ -42,7 +42,7 @@ export const FormSelector = () => {
             , state.setStudentInputs
             , state.setCourseInputs
             , state.setEnrolInputs
-            , state.setStaffInputs
+            , state.setUserInputs
             , state.setAuthInputs
             , state.loggedIn
             // . state.login
@@ -59,7 +59,7 @@ export const FormSelector = () => {
 
 {/* Auth Forms */}
             {/* !loggedIn */}
-            {loggedIn ? 
+            {/* {loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => {
                 formHandler.login(
                     e
@@ -89,7 +89,7 @@ export const FormSelector = () => {
                 <div className='bg-white'>(Logout)</div><br />
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Logout</button>
             </form> : null}
-            <br />
+            <br /> */}
 {/* Auth Forms */}
 {/* Student Forms */}
 			{loggedIn ?
@@ -119,9 +119,14 @@ export const FormSelector = () => {
             <br />
 
 			{loggedIn ?
-            <form className='border-solid border-8 border-blue-300' onSubmit={(e) => formHandler.get(e, 'students')}>
+            <form className='border-solid border-8 border-blue-300' onSubmit={(e) => formHandler.del(
+                e,
+                'sec/students',
+                inputs.studentObj.studentId
+            )}>
                 <div className='bg-white'>(Student: DELETE)</div><br />
-                <input type="text" name="name" placeholder="Enter Name:" />
+                <input value={inputs.studentObj.studentId} type="text" name="id" placeholder="Enter ID:"
+                    onChange={(e) => setStudentInputs('studentId', e.target.value)}/>
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Submit</button>
             </form> : null}
             <br />
