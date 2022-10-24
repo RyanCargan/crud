@@ -59,8 +59,8 @@ export const useStore = create(devtools(immer((set) => ({
       id: 3
     },
     enrolObj: {
-      courseId: 3,
-      studentId: 3
+      courseId: 2,
+      studentId: 1
     },
     userObj: {
       id: 3,
@@ -77,7 +77,7 @@ export const useStore = create(devtools(immer((set) => ({
   setStudentInputs: (selector, input) => set((state) => { state.inputs.studentObj[selector] = input }),
   setCourseInputs: (selector, input) => set((state) => { state.inputs.courseObj[selector] = input }),
   setEnrolInputs: (selector, input) => set((state) => { state.inputs.enrolObj[selector] = input }),
-  setUserInputs: (selector, input) => set((state) => { state.inputs.staffObj[selector] = input }),
+  setUserInputs: (selector, input) => set((state) => { state.inputs.userObj[selector] = input }),
   setAuthInputs: (selector, input) => set((state) => { state.inputs.authObj[selector] = input }),
   loggedIn: true,
   login: () => set({ loggedIn: true }),

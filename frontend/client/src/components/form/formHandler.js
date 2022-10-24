@@ -83,15 +83,21 @@ const post = async (e, stub, studentObj) => {
 	}
 }
 
-const put = async (e, stub) => {
+const put = async (e, stub, studentObj, id) => {
 	e.preventDefault()
-	const name = e.target.name.value
+
 	try {
-		let res = await axios.get(
-			`${url}${stub}`,
+		let res = await axios.put(
+			`${url}${stub}/${id}`,
+			studentObj,
+			{
+				headers: headers,
+				withCredentials: true,
+				// auth: auth
+			}
 		)
 		console.log(res)
-		return res;
+		return
 	} catch (err) {
 		console.error(err)
 	}
