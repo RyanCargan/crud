@@ -3,24 +3,26 @@ import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import axios from 'axios'
 
-const urls = [
-  'http://localhost:4000/api/students',
-  'http://localhost:4000/api/users',
-  'http://localhost:4000/api/courses',
-  'http://localhost:4000/api/enrollments',
-]
+// const urls = [
+//   'http://localhost:4000/api/students',
+//   'http://localhost:4000/api/users',
+//   'http://localhost:4000/api/courses',
+//   'http://localhost:4000/api/enrollments',
+// ]
 
-export const get = async (url) => {
-	try {
-		let res = await axios.get(
-			`${url}`,
-		)
-		console.log(res)
-		return res
-	} catch (err) {
-		console.error(err)
-	}
-}
+// export const get = async (url) => {
+// 	try {
+// 		let res = await axios.get(
+// 			`${url}`,
+// 		)
+//     console.log('AXIOS')
+// 		console.log(res.data)
+//     // resolve(res.data.json())
+// 		return res.data
+// 	} catch (err) {
+// 		console.error(err)
+// 	}
+// }
 
 export const useStore = create(devtools(immer((set) => ({
   isOpen: false,
@@ -29,12 +31,17 @@ export const useStore = create(devtools(immer((set) => ({
   showForm: false,
   toggleForm: () => set((state) => ({ showForm: !state.showForm })),
   items: {
-    students: get(urls[0]),
-    users: get(urls[1]),
-    courses: get(urls[2]),
-    enrollments: get(urls[3]),
+    // students: get(urls[0]),
+    // users: get(urls[1]),
+    // courses: get(urls[2]),
+    // enrollments: get(urls[3]),
+    students: null,
+    users: null,
+    courses: null,
+    enrollments: null,
   },
-  setItems: (items) => set(() => ({ items: items })),
+  // setItems: (items) => set(() => ({ items: items })),
+  setItems: (selector, input) => set((state) => { state.items[selector] = input }),
   body: {},
   setBody: (body) => set(() => ({ body: body })),
   inputs: {
@@ -52,4 +59,16 @@ export const useStore = create(devtools(immer((set) => ({
   //   set((state) => {
   //     state.todos[todoId].done = !state.todos[todoId].done
   // }),
+  urls: [
+    'http://localhost:4000/api/students',
+    'http://localhost:4000/api/users',
+    'http://localhost:4000/api/courses',
+    'http://localhost:4000/api/enrollments',
+  ],
+  entities: [
+    'students',
+    'users',
+    'courses',
+    'enrollments',
+  ]
 }))))
