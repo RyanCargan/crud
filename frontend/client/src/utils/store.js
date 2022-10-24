@@ -1,6 +1,26 @@
 import create from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
+import axios from 'axios'
+
+const urls = [
+  'http://localhost:4000/api/students',
+  'http://localhost:4000/api/users',
+  'http://localhost:4000/api/courses',
+  'http://localhost:4000/api/enrollments',
+]
+
+export const get = async (url) => {
+	try {
+		let res = await axios.get(
+			`${url}`,
+		)
+		console.log(res)
+		return res
+	} catch (err) {
+		console.error(err)
+	}
+}
 
 export const useStore = create(devtools(immer((set) => ({
   isOpen: false,
@@ -8,24 +28,12 @@ export const useStore = create(devtools(immer((set) => ({
   close: () => set({ isOpen: false }),
   showForm: false,
   toggleForm: () => set((state) => ({ showForm: !state.showForm })),
-  items: [
-    {
-      "id": 1,
-      "title": "Title 1",
-      "price": 109.95,
-      "description": "Description...",
-      "category": "Category",
-      "image": "https://picsum.photos/200/300"
-    },
-    {
-      "id": 2,
-      "title": "Title 2",
-      "price": 109.95,
-      "description": "Description...",
-      "category": "Category",
-      "image": "https://picsum.photos/200/300"
-    },
-  ],
+  items: {
+    students: get(urls[0]),
+    users: get(urls[1]),
+    courses: get(urls[2]),
+    enrollments: get(urls[3]),
+  },
   setItems: (items) => set(() => ({ items: items })),
   body: {},
   setBody: (body) => set(() => ({ body: body })),

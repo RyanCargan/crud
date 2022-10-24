@@ -67,7 +67,6 @@ public class UserController {
         {
             throw new UserIdAlreadyExistException();
         }
-
     }
 
     // get user by userid rest api

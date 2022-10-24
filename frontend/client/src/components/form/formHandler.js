@@ -77,7 +77,7 @@ const get = async (e, stub) => {
 			`${url}${stub}`,
 		)
 		console.log(res)
-		return
+		return res;
 	} catch (err) {
 		console.error(err)
 	}
