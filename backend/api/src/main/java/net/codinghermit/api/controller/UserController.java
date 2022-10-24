@@ -46,7 +46,7 @@ public class UserController {
     }
 
     // empty cache
-    @GetMapping("/clear/users")
+    @GetMapping("/sec/clear/users")
     @CacheEvict(value = "users", allEntries = true)
     // @Scheduled(fixedRateString = "${caching.userListTTL}")
     public void emptyUsersCache() {
@@ -55,7 +55,7 @@ public class UserController {
 
     // create user rest API
     @Async("asyncExecutor")
-    @PostMapping("/users")
+    @PostMapping("/sec/users")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "users", allEntries = true)
     public User createUser(@RequestBody User user)  {
@@ -83,7 +83,7 @@ public class UserController {
 
     // update user rest api
     @Async("asyncExecutor")
-    @PutMapping("/users/{userid}")
+    @PutMapping("/sec/users/{userid}")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "users", allEntries = true)
     public ResponseEntity<User> updateUser(@PathVariable Long userid,
@@ -98,7 +98,7 @@ public class UserController {
 
     // delete user rest api
     @Async("asyncExecutor")
-    @DeleteMapping("/users/{userid}")
+    @DeleteMapping("/sec/users/{userid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "users", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteUser

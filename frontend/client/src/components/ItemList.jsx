@@ -5,25 +5,6 @@ import shallow from 'zustand/shallow'
 
 export const ItemList = (props) => {
 
-  const array = [
-    {
-      "id": 3,
-      "title": "Title 3",
-      "price": 109.99,
-      "description": "Description...",
-      "category": "Category",
-      "image": "https://picsum.photos/200/300"
-    },
-    {
-      "id": 4,
-      "title": "Title 4",
-      "price": 109.99,
-      "description": "Description...",
-      "category": "Category",
-      "image": "https://picsum.photos/200/300"
-    },
-  ]
-
   const [items, setItems] = useStore(
 		(state) => [state.items, state.setItems],
 		shallow
@@ -40,7 +21,8 @@ export const ItemList = (props) => {
 
   return (
     <div className='m-auto'>
-      <button className='bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-lg border-solid border-8 border-orange-300' onClick={() => setItems([])}>Reset List</button>
+      {/* <button className='bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 rounded-lg border-solid border-8 border-orange-300' onClick={() => setItems([])}>Reset List</button> */}
+
       <div className='border-solid border-8 border-red-300'>
         {items.map((item) => (
         ('image' in item) === true ?
@@ -50,6 +32,7 @@ export const ItemList = (props) => {
           </Fragment>
         : null))}
       </div>
+
         {/* {getItems.map((item) => (
       ('image' in item) === true
           ? <><img key={item.id} src={item.image} alt={item.image}></img><br /></>

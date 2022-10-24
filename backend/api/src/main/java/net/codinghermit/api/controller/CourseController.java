@@ -34,7 +34,7 @@ public class CourseController {
     }
 
     // empty cache
-    @GetMapping("/clear/courses")
+    @GetMapping("/sec/clear/courses")
     @CacheEvict(value = "courses", allEntries = true)
     public void emptyCoursesCache() {
         System.out.println("Emptying courses cache!");
@@ -42,7 +42,7 @@ public class CourseController {
 
     // create course rest API
     @Async("asyncExecutor")
-    @PostMapping("/courses")
+    @PostMapping("/sec/courses")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "courses", allEntries = true)
     public Course createCourse(@RequestBody Course course)  {
@@ -70,7 +70,7 @@ public class CourseController {
 
     // update course rest api
     @Async("asyncExecutor")
-    @PutMapping("/courses/{courseId}")
+    @PutMapping("/sec/courses/{courseId}")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
@@ -85,7 +85,7 @@ public class CourseController {
 
     // delete course rest api
     @Async("asyncExecutor")
-    @DeleteMapping("/courses/{courseId}")
+    @DeleteMapping("/sec/courses/{courseId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteCourse

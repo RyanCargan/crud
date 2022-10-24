@@ -46,7 +46,7 @@ public class EnrolController {
     }
 
     // empty cache
-    @GetMapping("/clear/enrollments")
+    @GetMapping("/sec/clear/enrollments")
     @CacheEvict(value = "enrollments", allEntries = true)
     // @Scheduled(fixedRateString = "${caching.enrolListTTL}")
     public void emptyEnrolsCache() {
@@ -55,7 +55,7 @@ public class EnrolController {
 
     // create enrollment
     @Async("asyncExecutor")
-    @PostMapping("/enrollments")
+    @PostMapping("/sec/enrollments")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "enrollments", allEntries = true)
     public Enrol createEnrol(@RequestBody Enrol enrol)  {
@@ -98,7 +98,7 @@ public class EnrolController {
 
     // delete enrollment
     @Async("asyncExecutor")
-    @DeleteMapping("/enrollments/{enrolid}")
+    @DeleteMapping("/sec/enrollments/{enrolid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "enrollments", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteEnrol

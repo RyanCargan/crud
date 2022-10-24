@@ -34,7 +34,7 @@ public class StudentController {
     }
 
     // empty cache
-    @GetMapping("/clear/students")
+    @GetMapping("/sec/clear/students")
     @CacheEvict(value = "students", allEntries = true)
     public void emptyStudentsCache() {
         System.out.println("Emptying students cache!");
@@ -42,7 +42,7 @@ public class StudentController {
 
     // create student rest API
     @Async("asyncExecutor")
-    @PostMapping("/students")
+    @PostMapping("/sec/students")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "students", allEntries = true)
     public Student createStudent(@RequestBody Student student)  {
@@ -78,7 +78,7 @@ public class StudentController {
 
     // update student rest api
     @Async("asyncExecutor")
-    @PutMapping("/students/{studentid}")
+    @PutMapping("/sec/students/{studentid}")
     @ResponseStatus(HttpStatus.CREATED)
     @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Student> updateStudent(@PathVariable Long studentid,
@@ -94,7 +94,7 @@ public class StudentController {
 
     // delete student rest api
     @Async("asyncExecutor")
-    @DeleteMapping("/students/{studentid}")
+    @DeleteMapping("/sec/students/{studentid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CacheEvict(value = "students", allEntries = true)
     public ResponseEntity<Map<String, Boolean>> deleteStudent
