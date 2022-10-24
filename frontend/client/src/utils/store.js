@@ -60,10 +60,8 @@ export const useStore = create(devtools(immer((set) => ({
   //     state.todos[todoId].done = !state.todos[todoId].done
   // }),
   urls: [
-    'http://localhost:4000/api/students',
-    'http://localhost:4000/api/users',
-    'http://localhost:4000/api/courses',
-    'http://localhost:4000/api/enrollments',
+    'http://localhost:4000/api/',
+    'https://codinghermit.net/api/',
   ],
   entities: [
     'students',

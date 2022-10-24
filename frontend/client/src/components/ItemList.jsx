@@ -20,7 +20,7 @@ export const ItemList = (props) => {
 
   const fetchData = async(url, entity) =>
   {
-    const data = await axios.get(url).then(res => res.data)
+    const data = await axios.get(`${url}${entity}`).then(res => res.data)
     setItems(entity, data)
   }
 
@@ -96,19 +96,78 @@ export const ItemList = (props) => {
     {/* <>Suspense</><br /> */}
     <button onClick={() => {
       // setItems(`${entities[1]}`, get(`http://localhost:4000/api/${entities[0]}`))
-      fetchData(urls[0], entities[0])
-      fetchData(urls[1], entities[1])
-      fetchData(urls[2], entities[2])
-      fetchData(urls[3], entities[3])
-    }}>Fetch</button><br />
+      // fetchData(`${urls[0]}${entities[0]}`, entities[0])
+      // fetchData(`${urls[0]}${entities[1]}`, entities[1])
+      // fetchData(`${urls[0]}${entities[2]}`, entities[2])
+      // fetchData(`${urls[0]}${entities[3]}`, entities[3])
+      fetchData(`${urls[0]}`, entities[0])
+      fetchData(`${urls[0]}`, entities[1])
+      fetchData(`${urls[0]}`, entities[2])
+      fetchData(`${urls[0]}`, entities[3])
+    }} className='border-solid border-8 border-blue-300 space-y-2'>Fetch</button><br />
+
     {/* <Suspense fallback={<>Fetching...</>}> */}
+
+    <div className='flex flex-row bg-black rounded-lg z-0 space-x-2'>
+
+    <div className=''>
+      {items.courses?.map((item) => (
+          ('courseId' in item) === true ?
+          <Fragment key={item.courseId}>
+            <div className="bg-white rounded-lg p-2">
+            <>(Course)</><br />
+              <>{item.courseName}</><br />
+              <>Instructor: {item.staffId}</><br />
+            </div>
+            <br />
+          </Fragment>
+      : null))}
+    </div>
+
+    <div className=''>
+      {items.enrollments?.map((item) => (
+          ('courseId' in item && 'studentId' in item) === true ?
+          <Fragment key={item.courseId + item.studentId}>
+            <div className="bg-white rounded-lg p-2">
+            <>(Enrollment)</><br />
+              <>Course: {item.courseId}</><br />
+              <>Enrolled Students: {item.studentId}</><br />
+            </div>
+            <br />
+          </Fragment>
+      : null))}
+    </div>
+
+      <div className=''>
       {items.students?.map((item) => (
-          ('emailId' in item) === true ?
-            <Fragment key={item.id}>
+          ('studentId' in item) === true ?
+          <Fragment key={item.studentId}>
+            <div className="bg-white rounded-lg p-2">
+            <>(Student)</><br />
+              <>{item.studentName}</><br />
+              <>{item.emailId}</><br />
+            </div>
+            <br />
+          </Fragment>
+      : null))}
+      </div>
+
+      <div className=''>
+      {items.users?.map((item) => (
+          ('id' in item) === true ?
+          <Fragment key={item.id}>
+            <div className="bg-white rounded-lg p-2">
+            <>(Instructor)</><br />
               <>{item.userName}</><br />
               <>{item.emailId}</><br />
-            </Fragment>
-          : null))}
+            </div>
+            <br />
+          </Fragment>
+      : null))}
+      </div>
+
+    </div>
+
     {/* </Suspense> */}
 
       {/* <>{(items.students.length > 0) ? () => {console.log(items)} : null}</> */}
