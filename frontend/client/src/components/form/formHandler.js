@@ -63,13 +63,13 @@ const logout = async (e, stub) => {
 	}
 }
 
-const post = async (e, stub, studentObj) => {
+const post = async (e, stub, obj) => {
 	e.preventDefault()
 
 	try {
 		let res = await axios.post(
 			`${url}${stub}`,
-			studentObj,
+			obj,
 			{
 				headers: headers,
 				withCredentials: true,
@@ -83,13 +83,13 @@ const post = async (e, stub, studentObj) => {
 	}
 }
 
-const put = async (e, stub, studentObj, id) => {
+const put = async (e, stub, obj, id) => {
 	e.preventDefault()
 
 	try {
 		let res = await axios.put(
 			`${url}${stub}/${id}`,
-			studentObj,
+			obj,
 			{
 				headers: headers,
 				withCredentials: true,

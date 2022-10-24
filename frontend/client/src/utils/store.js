@@ -56,7 +56,7 @@ export const useStore = create(devtools(immer((set) => ({
     courseObj: {
       courseId: 3,
       courseName: 'Course3',
-      id: 3
+      id: 2
     },
     enrolObj: {
       courseId: 2,

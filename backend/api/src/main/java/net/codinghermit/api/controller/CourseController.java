@@ -75,7 +75,7 @@ public class CourseController {
     @CacheEvict(value = "courses", allEntries = true)
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
                 @RequestBody Course courseDetails) {
-    if(courseRepository.update(new Course(courseId, courseDetails.getCourseName(), courseDetails.getStaffId()))==0)
+    if(courseRepository.update(new Course(courseId, courseDetails.getCourseName(), courseDetails.getId()))==0)
                 {
                     throw new CourseIdNotFoundException();
                 }

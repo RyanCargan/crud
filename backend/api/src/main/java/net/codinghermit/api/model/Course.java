@@ -15,5 +15,5 @@ public class Course implements Serializable {
 
     private long courseId;
     private String courseName;
-    private long staffId;
+    private long id;
 }

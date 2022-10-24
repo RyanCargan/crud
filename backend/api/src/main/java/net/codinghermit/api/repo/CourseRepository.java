@@ -18,11 +18,11 @@ public interface CourseRepository {
     @Delete("DELETE FROM courses WHERE courseId = #{courseId}")
     public int deleteById(long courseId);
 
-    @Insert("INSERT INTO courses(courseId, courseName, staffId) " +
-	    " VALUES (#{courseId}, #{courseName}, #{staffId})")
+    @Insert("INSERT INTO courses(courseId, courseName, id) " +
+	    " VALUES (#{courseId}, #{courseName}, #{id})")
     public int insert(Course course);
 
     @Update("UPDATE courses SET " +
-	    " courseName=#{courseName}, staffId=#{staffId} WHERE courseId=#{courseId}")
+	    " courseName=#{courseName}, id=#{id} WHERE courseId=#{courseId}")
     public int update(Course course);
 }

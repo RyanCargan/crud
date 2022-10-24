@@ -162,24 +162,18 @@ export const FormSelector = () => {
             {loggedIn ?
             <form className='border-solid border-8 border-blue-300 space-y-2' onSubmit={(e) => formHandler.post(
                 e,
-                'courses',
+                'sec/courses',
                 inputs.courseObj
             )}>
                 <div className='bg-white'>(Course: POST)</div><br />
-                <input value={inputs.studentObj.studentId} type="number" name="id" placeholder="Enter ID:"
-                    onChange={(e) => setCourseInputs('studentId', Number(e.target.value))}/>
+                <input value={inputs.courseObj.courseId} type="number" name="courseId" placeholder="Enter ID:"
+                    onChange={(e) => setCourseInputs('courseId', Number(e.target.value))}/>
 
-                <input value={inputs.studentObj.studentName} type="text" name="name" placeholder="Enter Name:"
-                    onChange={(e) => setCourseInputs('studentName', e.target.value)}/>
+                <input value={inputs.courseObj.courseName} type="text" name="name" placeholder="Enter Name:"
+                    onChange={(e) => setCourseInputs('courseName', e.target.value)}/>
 
-				<input value={inputs.studentObj.emailId} type="text" name="email" placeholder="Enter Email:"
-                    onChange={(e) => setCourseInputs('emailId', e.target.value)}/>
-
-                <input value={inputs.studentObj.role} type="text" name="role" placeholder="Enter Role:"
-                    onChange={(e) => setCourseInputs('role', e.target.value)}/>
-
-				<input value={inputs.studentObj.password} type="password" name="password" placeholder="Enter Password:"
-                    onChange={(e) => setCourseInputs('password', e.target.value)}/>
+				<input value={inputs.courseObj.id} type="text" name="id" placeholder="Enter Staff ID:"
+                    onChange={(e) => setCourseInputs('id', e.target.value)}/>
 
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Submit</button>
             </form> : null}
@@ -188,37 +182,32 @@ export const FormSelector = () => {
 			{loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => formHandler.del(
                 e,
-                'sec/students',
-                inputs.studentObj.studentId
+                'sec/courses',
+                inputs.courseObj.courseId
             )}>
                 <div className='bg-white'>(Course: DELETE)</div><br />
-                <input value={inputs.studentObj.studentId} type="text" name="id" placeholder="Enter ID:"
-                    onChange={(e) => setStudentInputs('studentId', e.target.value)}/>
+                <input value={inputs.courseObj.courseId} type="number" name="courseId" placeholder="Enter ID:"
+                    onChange={(e) => setCourseInputs('courseId', e.target.value)}/>
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Submit</button>
             </form> : null}
             <br />
 
             {loggedIn ?
-            <form className='border-solid border-8 border-blue-300 space-y-2' onSubmit={(e) => formHandler.post(
+            <form className='border-solid border-8 border-blue-300 space-y-2' onSubmit={(e) => formHandler.put(
                 e,
-                'students',
-                inputs.studentObj
+                'sec/courses',
+                inputs.courseObj,
+                inputs.courseObj.courseId
             )}>
                 <div className='bg-white'>(Course: PUT)</div><br />
-                <input value={inputs.studentObj.studentId} type="number" name="id" placeholder="Enter ID:"
-                    onChange={(e) => setStudentInputs('studentId', Number(e.target.value))}/>
+                <input value={inputs.courseObj.courseId} type="number" name="courseId" placeholder="Enter ID:"
+                    onChange={(e) => setCourseInputs('courseId', Number(e.target.value))}/>
 
-                <input value={inputs.studentObj.studentName} type="text" name="name" placeholder="Enter Name:"
-                    onChange={(e) => setStudentInputs('studentName', e.target.value)}/>
+                <input value={inputs.courseObj.courseName} type="text" name="name" placeholder="Enter Name:"
+                    onChange={(e) => setCourseInputs('courseName', e.target.value)}/>
 
-				<input value={inputs.studentObj.emailId} type="text" name="email" placeholder="Enter Email:"
-                    onChange={(e) => setStudentInputs('emailId', e.target.value)}/>
-
-                <input value={inputs.studentObj.role} type="text" name="role" placeholder="Enter Role:"
-                    onChange={(e) => setStudentInputs('role', e.target.value)}/>
-
-				<input value={inputs.studentObj.password} type="password" name="password" placeholder="Enter Password:"
-                    onChange={(e) => setStudentInputs('password', e.target.value)}/>
+				<input value={inputs.courseObj.id} type="number" name="id" placeholder="Enter Staff ID:"
+                    onChange={(e) => setCourseInputs('id', Number(e.target.value))}/>
 
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Submit</button>
             </form> : null}

@@ -64,7 +64,7 @@ export const ItemList = (props) => {
           <div className="bg-white rounded-lg p-2">
           <>(Course)</><br />
             <>{item.courseName}</><br />
-            <>Instructor: {item.staffId}</><br />
+            <>Instructor: {item.id}</><br />
           </div>
           <br />
         </Fragment>
