@@ -5,9 +5,9 @@ const url = 'http://localhost:4000/api/'
 
 const headers = {
 	// Authorization: `Bearer ${token}`,
-	'Authorization': 'Basic',
+	// 'Authorization': 'Basic',
 	// 'Content-Type': 'application/x-www-form-urlencoded',
-	// 'Content-Type': 'application/json',
+	'Content-Type': 'application/json',
 	'access-control-allow-origin': '*',
 }
 
@@ -49,17 +49,31 @@ const login = async (e, stub) => {
 	}
 }
 
-const post = async (e, stub, body) => {
+const logout = async (e, stub) => {
+	e.preventDefault()
+	// const name = e.target.name.value
+	try {
+		let res = await axios.post(
+			`${url}${stub}`,
+		)
+		console.log(res)
+		return res;
+	} catch (err) {
+		console.error(err)
+	}
+}
+
+const post = async (e, stub, studentObj) => {
 	e.preventDefault()
 
 	try {
 		let res = await axios.post(
 			`${url}${stub}`,
-			body,
+			studentObj,
 			{
 				headers: headers,
 				withCredentials: true,
-				auth: auth
+				// auth: auth
 			}
 		)
 		console.log(res)
@@ -69,7 +83,7 @@ const post = async (e, stub, body) => {
 	}
 }
 
-const get = async (e, stub) => {
+const put = async (e, stub) => {
 	e.preventDefault()
 	const name = e.target.name.value
 	try {
@@ -83,7 +97,38 @@ const get = async (e, stub) => {
 	}
 }
 
+const del = async (e, stub) => {
+	e.preventDefault()
+	const name = e.target.name.value
+	try {
+		let res = await axios.delete(
+			`${url}${stub}`,
+		)
+		console.log(res)
+		return res;
+	} catch (err) {
+		console.error(err)
+	}
+}
+
+// const get = async (e, stub) => {
+// 	e.preventDefault()
+// 	const name = e.target.name.value
+// 	try {
+// 		let res = await axios.get(
+// 			`${url}${stub}`,
+// 		)
+// 		console.log(res)
+// 		return res;
+// 	} catch (err) {
+// 		console.error(err)
+// 	}
+// }
+
 export const formHandler = {
+	login: login,
+	logout: logout,
 	post: post,
-	get: get,
+	del: del,
+	put: put,
 }

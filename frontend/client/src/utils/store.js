@@ -45,15 +45,51 @@ export const useStore = create(devtools(immer((set) => ({
   body: {},
   setBody: (body) => set(() => ({ body: body })),
   inputs: {
-    createStd: {
+    // Usable for both POST & PUT
+    studentObj: {
       studentId: 3,
       studentName: 'Student3',
       emailId: 'student3@email.com',
       role: 'ROLE_USER',
       password: '123'
+    },
+    courseObj: {
+      studentId: 3,
+      studentName: 'Student3',
+      emailId: 'student3@email.com',
+      role: 'ROLE_USER',
+      password: '123'
+    },
+    enrolObj: {
+      studentId: 3,
+      studentName: 'Student3',
+      emailId: 'student3@email.com',
+      role: 'ROLE_USER',
+      password: '123'
+    },
+    staffObj: {
+      studentId: 3,
+      studentName: 'Student3',
+      emailId: 'student3@email.com',
+      role: 'ROLE_USER',
+      password: '123'
+    },
+    authObj: {
+      username: 'Staff1',
+      password: '123'
     }
   },
-  setInputs: (selector, input) => set((state) => { state.inputs.createStd[selector] = input }),
+  setStudentInputs: (selector, input) => set((state) => { state.inputs.studentObj[selector] = input }),
+  setCourseInputs: (selector, input) => set((state) => { state.inputs.courseObj[selector] = input }),
+  setEnrolInputs: (selector, input) => set((state) => { state.inputs.enrolObj[selector] = input }),
+  setStaffInputs: (selector, input) => set((state) => { state.inputs.staffObj[selector] = input }),
+  setAuthInputs: (selector, input) => set((state) => { state.inputs.authObj[selector] = input }),
+  loggedIn: true,
+  login: () => set({ loggedIn: true }),
+  logout: () => set({ loggedIn: false }),
+  // login: () => set((state) => ({ loggedIn: true })),
+  // logout: () => set((state) => ({ loggedIn: false })),
+  // toggleLogin: () => set((state) => ({ loggedIn: !state.loggedIn })),
   // setInputs: (inputs) => set(() => ({ inputs: inputs })),
   // toggleTodo: (todoId) =>
   //   set((state) => {
