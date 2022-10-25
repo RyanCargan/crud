@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .antMatchers("/api/sec/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
+            .formLogin() // Required for cookies even if form not needed.
                 // .loginPage("/login")
                 .permitAll()
                 .and()

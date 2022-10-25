@@ -92,6 +92,7 @@ export const useStore = create(devtools(immer((set) => ({
   // }),
   urls: [
     'http://localhost:4000/api/',
+    'http://localhost:4000/',
     'https://codinghermit.net/api/',
   ],
   entities: [

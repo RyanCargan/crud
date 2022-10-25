@@ -35,6 +35,7 @@ export const FormSelector = () => {
         , setUserInputs
         , setAuthInputs
         , loggedIn
+        , urls
         // , login
         // , logout
     ] = useStore(
@@ -47,6 +48,7 @@ export const FormSelector = () => {
             , state.loggedIn
             // . state.login
             // , state.logout
+            , state.urls
         ],
         shallow
     )
@@ -59,12 +61,13 @@ export const FormSelector = () => {
 
 {/* Auth Forms */}
             {/* !loggedIn */}
-            {/* {loggedIn ?
+            {loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => {
                 formHandler.login(
-                    e
+                    urls[1]
                     , 'login'
-                    , inputs.authObj
+                    , 'Staff1'
+                    , '123'
                 )
                 login()
             }}>
@@ -88,9 +91,9 @@ export const FormSelector = () => {
                 <div className='bg-white'>(Logout)</div><br />
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Logout</button>
             </form> : null}
-            <br /> */}
+            <br />
 
-            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                 onClick={() => {
                     window.location.replace('http://localhost:4000/login');
                 }}
@@ -99,7 +102,7 @@ export const FormSelector = () => {
                 onClick={() => {
                     window.location.replace('http://localhost:4000/logout');
                 }}
-            >Logout</button>
+            >Logout</button> */}
 {/* Auth Forms */}
 {/* Student Forms */}
 			{loggedIn ?

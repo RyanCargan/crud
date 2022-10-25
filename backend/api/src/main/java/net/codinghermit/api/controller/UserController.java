@@ -37,6 +37,16 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    // login
+    @Async("asyncExecutor")
+    @PostMapping("/sec/login")
+    @ResponseStatus(HttpStatus.OK)
+    public void login()
+    {
+        return;
+    }
+
+
     // get all users
     @GetMapping("/users")
     @Cacheable("users")
