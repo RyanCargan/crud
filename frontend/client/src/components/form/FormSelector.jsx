@@ -3,7 +3,8 @@ import {
     useStore,
 } from '../../utils/barrel'
 import shallow from 'zustand/shallow'
-import {useRef, useEffect} from 'react'
+import {useRef, useState} from 'react'
+// import IframeResizer from 'iframe-resizer-react'
 
 // const [body, setBody] = useStore(
 //     (state) => [state.body, state.setBody],
@@ -56,16 +57,23 @@ export const FormSelector = () => {
     const login = useStore((state) => state.login)
     const logout = useStore((state) => state.logout)
 
+    // iframe handler
+    const ref = useRef()
+    const [height, setHeight] = useState("0px");
+    const onLoad = () => {
+      setHeight(ref.current.contentWindow.document.body.scrollHeight + "px");
+    }
+
 	return (
 		<div className='m-auto'>
 
 {/* Auth Forms */}
             {/* !loggedIn */}
-            {loggedIn ?
+            {/* {loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => {
                 formHandler.login(
-                    urls[1]
-                    , 'login'
+                    urls[0]
+                    , 'sec/login'
                     , 'Staff1'
                     , '123'
                 )
@@ -80,17 +88,50 @@ export const FormSelector = () => {
             </form> : null}
             <br />
 
-            {!loggedIn ?
+            {loggedIn ?
             <form className='border-solid border-8 border-blue-300' onSubmit={(e) => {
                 formHandler.logout(
                     e
-                    , 'logout'
+                    , 'http://localhost:4000/logout'
                 )
                 // logout()
             }}>
                 <div className='bg-white'>(Logout)</div><br />
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit">Logout</button>
             </form> : null}
+            <br /> */}
+
+            {/* <div>
+                <iframe
+                    ref={ref}
+                    onLoad={onLoad}
+                    id="myFrame"
+                    width="100%"
+                    height={height}
+                    scrolling="no"
+                    frameBorder="0"
+                    style={{
+                        maxWidth: 640,
+                        width: "100%",
+                        overflow: "auto",
+                    }}
+                 src="http://localhost:4000/login"></iframe>
+            </div> */}
+
+            <div>
+            {/* <IframeResizer
+                log
+                src="http://anotherdomain.com/iframe.html"
+                style={{ width: '1px', minWidth: '100%'}}
+            /> */}
+                <iframe height='320px' src='http://localhost:4000/login'></iframe>
+            </div>
+            <br />
+
+            <div>
+                {/* <iframe src="http://localhost:4000/login"></iframe> */}
+                <a className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' href='http://localhost:4000/logout'>Logout</a>
+            </div>
             <br />
 
             {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'

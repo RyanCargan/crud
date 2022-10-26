@@ -75,7 +75,7 @@ export const ItemList = (props) => {
 
       {items.enrollments?.map((item) => (
           ('courseId' in item && 'studentId' in item) === true ?
-          <Fragment key={item.courseId + item.studentId}>
+          <Fragment key={'enrol' + item.courseId + item.studentId}>
             <div className="bg-white rounded-lg p-2">
             <>(Enrollment)</><br />
               <>Course: {item.courseId}</><br />

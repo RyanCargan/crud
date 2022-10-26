@@ -50,12 +50,12 @@ const auth = {
 // 	}
 // }
 
-const logout = async (e, stub) => {
+const logout = async (e, url) => {
 	e.preventDefault()
 	// const name = e.target.name.value
 	try {
-		let res = await axios.post(
-			`${authUrl}${stub}`,
+		let res = await axios.get(
+			`${url}`,
 		)
 		console.log(res)
 		return res;
@@ -65,15 +65,26 @@ const logout = async (e, stub) => {
 }
 
 export const login = async (url, stub, username, password) => {
-  const formData = new FormData();
+	e.preventDefault()
 
-  formData.append("username", username);
-  formData.append("password", password);
+	let base64 = btoa(`${username}:${password}`)
 
   try {
-    const { data } = await client.post(`${url}${stub}`, formData)
+    const res = await axios.post(
+			// `${url}${stub}`,
+			'http://localhost:4000/api/sec/login',
+			{},
+			{
+				headers: {
+					// 'Content-Type': 'application/json',
+					// 'access-control-allow-origin': '*',
+					// 'Authorization': `Basic ${base64}`,
+					'Authorization': 'Basic U3RhZmYxOjEyMw==',
+				},
+			}
+		)
 
-    return data
+    return res
   } catch (error) {
     return error.response.data;
   }

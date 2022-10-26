@@ -39,11 +39,12 @@ public class SecurityConfig {
             .formLogin() // Required for cookies even if form not needed.
                 // .loginPage("/login")
                 .permitAll()
+                .defaultSuccessUrl("/login", true)
                 .and()
             .logout()
                 .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)))
                 .logoutUrl("/logout")
-                // .logoutSuccessUrl("/login")
+                    // .logoutSuccessUrl("/login")
                     .deleteCookies("JSESSIONID")
                     .clearAuthentication(true)
                     .invalidateHttpSession(true)
@@ -60,8 +61,14 @@ public class SecurityConfig {
                 .and()
             .cors()
                 .and()
+            .headers()
+		        .frameOptions()
+			    // .sameOrigin()
+                .disable()
+            .   and()
             .csrf()
-                .disable();
+                .disable()
+            ;
 
 			return http.build();
     }
