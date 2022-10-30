@@ -15,16 +15,15 @@ public class WebConfig implements WebMvcConfigurer {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
-                    .addMapping("/**")
-                    .allowedOrigins(
-                        "http://localhost:3000"
-                        , "https://localhost:3000"
-                        , "http://codinghermit.net"
-                        , "https://codinghermit.net"
-                    )
-                    .allowedHeaders("*")
-                    .allowedMethods("*")
-                    .allowCredentials(true);
+					.addMapping("/api/**").allowedOrigins("http://127.0.0.1:3000");
+                    // .addMapping("/api/**")
+                    // .allowedOrigins(
+                    //     "*"
+                    // )
+                    // .allowedHeaders("*")
+                    // .exposedHeaders("*")
+                    // .allowedMethods("*")
+                    // .allowCredentials(true);
 			}
 		};
 	}

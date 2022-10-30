@@ -17,6 +17,17 @@
 		<java.version>16</java.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<!-- <repository>
+			<id>maven-central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository> -->
+	</repositories>
+
 	<dependencies>
 
 		<!-- JDBC -->
@@ -136,6 +147,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- <dependency>
+			<groupId>nl.talsmasoftware</groupId>
+			<artifactId>umldoclet</artifactId>
+			<version>2.0.19</version>
+			<scope>provided</scope>
+	 </dependency> -->
+
 		<!-- Testing -->
 
 		<!-- Test Starter -->
@@ -155,15 +173,45 @@
 	</dependencies>
 
 	<build>
+	<!-- <pluginManagement> -->
 		<plugins>
 
 			<!-- Spring Maven -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- <configuration>
+					<mainClass>net.codinghermit.api</mainClass>
+				</configuration> -->
+			</plugin>
+
+			<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.0.1</version>
+					<executions>
+							<execution>
+									<id>attach-javadocs</id>
+									<goals>
+											<goal>jar</goal>
+									</goals>
+							</execution>
+					</executions>
+					<configuration>
+							<doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
+							<docletArtifact>
+									<groupId>nl.talsmasoftware</groupId>
+									<artifactId>umldoclet</artifactId>
+									<version>2.0.19</version>
+							</docletArtifact>
+							<additionalOptions>
+									<!--<additionalOption>...</additionalOption>-->
+							</additionalOptions>
+					</configuration>
 			</plugin>
 
 		</plugins>
+	<!-- </pluginManagement> -->
 	</build>
 
 </project>

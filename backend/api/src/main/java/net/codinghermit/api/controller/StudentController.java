@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 // @CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/")
 public class StudentController {

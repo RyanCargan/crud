@@ -60,6 +60,7 @@ public class SecurityConfig {
                 // ))
                 .and()
             .cors()
+                // .disable()
                 .and()
             .headers()
 		        .frameOptions()

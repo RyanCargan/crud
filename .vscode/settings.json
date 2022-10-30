@@ -1,4 +1,10 @@
 {
 	"java.configuration.updateBuildConfiguration": "interactive",
-	"git.autorefresh": true
+	"git.autorefresh": true,
+	"java.configuration.runtimes": [
+		{
+			"name": "JavaSE-16",
+			"path": "/nix/store/3x5g439mad9yx66rx55va82gzr34gfki-adoptopenjdk-hotspot-bin-16.0.2",
+		}
+	]
 }

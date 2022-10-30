@@ -2,7 +2,7 @@ spring: # Framework
   datasource: # Database
     url: jdbc:postgresql://localhost:5432/codinghermit
     username: postgres
-    password: 1997
+    # password: 1997
     driver-class-name: org.postgresql.Driver
   redis: # Cache
     host: localhost
