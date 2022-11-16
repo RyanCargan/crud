@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "backend/api"
+		},
+		{
+			"path": "ops"
+		},
+		{
+			"path": "ai"
+		},
+		{
+			"path": "frontend/ssr-client"
+		},
+		{
+			"path": "frontend/client"
+		},
+		{
+			"path": "../../../.leetcode"
+		},
+		{
+			"path": "../nvidia-docker"
+			// "path": "../../../jupyter"
+		},
+		// {
+		// 	"path": "../jupyterlab"
+		// }
+	],
+	"settings": {
+		"java.import.exclusions": [
+			// "**/node_modules/**",
+			// "**/.metadata/**",
+			// "**/archetype-resources/**",
+			// "**/META-INF/maven/**",
+			// "**/templater-front/**",
+		],
+		"java.project.resourceFilters": [
+      "node_modules",
+      ".git",
+		],
+		"java.project.sourcePaths": ["api"],
+	}
+}

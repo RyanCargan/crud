@@ -30,6 +30,11 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!-- JDBC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -207,6 +212,13 @@
 							<additionalOptions>
 									<!--<additionalOption>...</additionalOption>-->
 							</additionalOptions>
+							<tags>
+									<tag>
+											<name>todo</name>
+											<placement>a</placement>
+											<head>Task:</head>
+									</tag>
+							</tags>
 					</configuration>
 			</plugin>
 
